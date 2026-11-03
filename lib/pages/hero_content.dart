@@ -94,9 +94,9 @@ class HeroContent extends StatelessWidget {
         ),
         SizedBox(height: isSmall ? 28 : 32),
 
-        // Phones: buttons stacked, full width. Laptops: side by side with the
-        // brand label on the far right of the same line.
-        if (isSmall)
+        // Phones: buttons stacked full width, brand label underneath.
+        // Laptops: buttons side by side with the brand label on the far right.
+        if (isSmall) ...[
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 420),
             child: Column(
@@ -107,8 +107,10 @@ class HeroContent extends StatelessWidget {
                 _orderButton(context),
               ],
             ),
-          )
-        else
+          ),
+          const SizedBox(height: 28),
+          const _BrandLabel(),
+        ] else
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
