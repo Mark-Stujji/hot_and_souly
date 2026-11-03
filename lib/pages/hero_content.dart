@@ -12,8 +12,11 @@ class HeroContent extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final isSmall = size.width < 700;
 
-    // The headline shrinks on narrow AND short windows, so it always fits.
-    final headlineSize = (size.width * 0.12)
+    // Headline size. Phones: based on width so it fills the line nicely.
+    // Laptops: same formula as before (shrinks on narrow AND short windows).
+    final headlineSize = isSmall
+        ? (size.width * 0.135).clamp(40.0, 58.0).toDouble()
+        : (size.width * 0.12)
         .clamp(40.0, (size.height * 0.11).clamp(48.0, 84.0).toDouble())
         .toDouble();
 
@@ -33,13 +36,13 @@ class HeroContent extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 10),
-            // Flexible: the tagline wraps instead of overflowing on phones
-            const Flexible(
+            // Flexible: the tagline wraps instead of overflowing
+            Flexible(
               child: Text(
                 "FRESH OFF THE GRILL · ALWAYS SOULFUL",
                 style: TextStyle(
-                  fontSize: 12,
-                  letterSpacing: 2,
+                  fontSize: isSmall ? 10.5 : 12,
+                  letterSpacing: isSmall ? 1.2 : 2,
                   fontWeight: FontWeight.w600,
                   color: Colors.white70,
                 ),
@@ -47,7 +50,7 @@ class HeroContent extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: isSmall ? 16 : 20),
 
         // headline line 1: white, upright
         Text(
@@ -73,7 +76,7 @@ class HeroContent extends StatelessWidget {
             height: 1.05,
           ),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: isSmall ? 18 : 24),
 
         // paragraph, max width so it wraps nicely
         ConstrainedBox(
@@ -83,61 +86,79 @@ class HeroContent extends StatelessWidget {
                 "Your neighbourhood stop for fries, tacos, hot dogs, and the good "
                 "stuff on the side.",
             style: TextStyle(
-              fontSize: isSmall ? 16 : 20,
-              height: 1.6,
-              color: Colors.white70,
+              fontSize: isSmall ? 15.5 : 20,
+              height: isSmall ? 1.55 : 1.6,
+              color: isSmall ? Colors.white : Colors.white70,
             ),
           ),
         ),
-        const SizedBox(height: 32),
+        SizedBox(height: isSmall ? 28 : 32),
 
-        // Buttons on the left, brand label on the far right of the SAME line.
-        // The label only shows on wide windows (on narrow ones it would crowd the buttons).
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(
-              // two buttons, second one drops below on narrow screens
-              child: Wrap(
-                spacing: 14,
-                runSpacing: 14,
-                children: [
-                  // filled gold button: scrolls down to the full menu
-                  ElevatedButton.icon(
-                    onPressed: () => goToMenu('all'),
-                    icon: const Icon(Icons.arrow_downward, size: 16),
-                    label: const Text("See the menu"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE3B341),
-                      foregroundColor: const Color(0xFF14110F),
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
-                      shape: const StadiumBorder(),
-                      textStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-
-                  // outlined button: opens the cart / order sheet
-                  OutlinedButton.icon(
-                    onPressed: () => showCartSheet(context),
-                    icon: const Icon(Icons.north_east, size: 16),
-                    label: const Text("Place your order"),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      side: const BorderSide(color: Colors.white38),
-                      padding:
-                      const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
-                      shape: const StadiumBorder(),
-                      textStyle: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
+        // Phones: buttons stacked, full width. Laptops: side by side with the
+        // brand label on the far right of the same line.
+        if (isSmall)
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 420),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _menuButton(),
+                const SizedBox(height: 12),
+                _orderButton(context),
+              ],
             ),
-            if (size.width >= 900) const _BrandLabel(),
-          ],
-        ),
+          )
+        else
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                child: Wrap(
+                  spacing: 14,
+                  runSpacing: 14,
+                  children: [
+                    _menuButton(),
+                    _orderButton(context),
+                  ],
+                ),
+              ),
+              if (size.width >= 900) const _BrandLabel(),
+            ],
+          ),
       ],
+    );
+  }
+
+  // filled gold button: scrolls down to the full menu
+  Widget _menuButton() {
+    return ElevatedButton.icon(
+      onPressed: () => goToMenu('all'),
+      icon: const Icon(Icons.arrow_downward, size: 16),
+      label: const Text("See the menu"),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: const Color(0xFFE3B341),
+        foregroundColor: const Color(0xFF14110F),
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+        shape: const StadiumBorder(),
+        textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+      ),
+    );
+  }
+
+  // outlined button: opens the cart / order sheet
+  Widget _orderButton(BuildContext context) {
+    return OutlinedButton.icon(
+      onPressed: () => showCartSheet(context),
+      icon: const Icon(Icons.north_east, size: 16),
+      label: const Text("Place your order"),
+      style: OutlinedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: const Color(0x33000000),
+        side: const BorderSide(color: Colors.white54),
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+        shape: const StadiumBorder(),
+        textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+      ),
     );
   }
 }
