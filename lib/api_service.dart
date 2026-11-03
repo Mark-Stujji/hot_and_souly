@@ -3,8 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:hot_and_souly/models/item.dart';
 import 'package:hot_and_souly/cart.dart';
 
-// Change this to your deployed URL later.
-const String baseUrl = 'http://localhost:3000';
+// The live API on Render. For local testing, switch back to
+// 'http://localhost:3000' (and run `node server.js`).
+const String baseUrl = 'https://hot-and-souly-api.onrender.com';
 
 class ApiService {
   // GET /menu -> list of MenuItem
