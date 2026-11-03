@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
                 // background photo with a dark tint so the text is readable
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("lib/images/background.png"),
+                    image: AssetImage("lib/images/background.webp"),
                     fit: BoxFit.cover,
                     colorFilter: ColorFilter.mode(
                       Color(0x66000000),
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
       children: [
         ClipOval(
           child: Image.asset(
-            "lib/images/HSlogo.png",
+            "lib/images/HSlogo.webp",
             height: isSmall ? 48 : 80, // smaller logo on phones
             width: isSmall ? 48 : 80,
             fit: BoxFit.cover,

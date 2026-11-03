@@ -16,7 +16,7 @@ class Footer extends StatelessWidget {
       children: [
         ClipOval(
           child: Image.asset(
-            "lib/images/HSlogo.png",
+            "lib/images/HSlogo.webp",
             height: 48,
             width: 48,
             fit: BoxFit.cover,

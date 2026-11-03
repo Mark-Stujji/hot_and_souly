@@ -82,7 +82,7 @@ class StorySection extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Image.asset("lib/images/use.png", fit: BoxFit.cover),
+                  child: Image.asset("lib/images/use.webp", fit: BoxFit.cover),
                 ),
               ),
 

@@ -1037,7 +1037,7 @@ p.a30()
 return p},
 aIG(a){return new A.a22($.ah,a)},
 atF(){var s,r,q,p,o=v.G,n=o.window,m=A.aIe(n.navigator)
-if(m==null||m.length===0)return B.oj
+if(m==null||m.length===0)return B.oi
 s=A.c([],t.ss)
 for(n=m.length,r=0;r<m.length;m.length===n||(0,A.v)(m),++r){q=m[r]
 p=new o.Intl.Locale(q)
@@ -11153,8 +11153,8 @@ break
 case 4:s=l.a
 s===$&&A.a()
 s=A.bl(s,200)
-r=A.bl(A.a0R(l,B.ok,B.I3),24)
-q=A.bl(A.a0R(l,B.ok,B.IH),32)
+r=A.bl(A.a0R(l,B.oj,B.I3),24)
+q=A.bl(A.a0R(l,B.oj,B.IH),32)
 p=A.bl(l.a,10)
 o=A.bl(l.a,12)
 l.d===$&&A.a()
@@ -11164,8 +11164,8 @@ break
 case 5:s=l.a
 s===$&&A.a()
 s=A.bl(A.z8(s+240),40)
-r=A.bl(A.a0R(l,B.om,B.Ji),24)
-q=A.bl(A.a0R(l,B.om,B.Jj),32)
+r=A.bl(A.a0R(l,B.ol,B.Ji),24)
+q=A.bl(A.a0R(l,B.ol,B.Jj),32)
 p=A.bl(l.a+15,8)
 o=A.bl(l.a+15,12)
 l.d===$&&A.a()
@@ -11747,7 +11747,7 @@ axW(a,b,c){if(b!=null&&!b.j(0,B.K))return A.axq(b.b0(A.aIB(c)),a)
 return a},
 aIB(a){var s,r,q,p,o,n
 if(a<0)return 0
-for(s=0;r=B.ol[s],q=r.a,a>=q;){if(a===q||s+1===6)return r.b;++s}p=B.ol[s-1]
+for(s=0;r=B.ok[s],q=r.a,a>=q;){if(a===q||s+1===6)return r.b;++s}p=B.ok[s-1]
 o=p.a
 n=p.b
 return n+(a-o)/(q-o)*(r.b-n)},
@@ -46992,7 +46992,7 @@ a4j(a){var s,r=this,q=null,p=r.a,o=p.e
 p=p.cx
 s=r.gabH()
 r.a.toString
-return new A.Cn(q,q,q,new A.alV(),q,q,q,q,q,o,B.L7,q,q,q,B.op,r.gabO(),p,q,B.TV,B.hB,q,s,q,q,B.oj,!1,!1,q,q,q,new A.oo(r,t.bT))},
+return new A.Cn(q,q,q,new A.alV(),q,q,q,q,q,o,B.L7,q,q,q,B.op,r.gabO(),p,q,B.TV,B.hB,q,s,q,q,B.oi,!1,!1,q,q,q,new A.oo(r,t.bT))},
 K(a){var s,r=this.a4j(a)
 this.a.toString
 s=this.d
@@ -85483,7 +85483,7 @@ s.toString
 return A.a2l(s)},
 $S:0}
 A.JH.prototype={
-K(a){var s=null,r=A.bn(a,s,t.w).w,q=t.p,p=A.dO(A.c([A.axg(A.Kp("lib/images/HSlogo.png",s,B.bL,48,48)),B.fi,B.DQ],q),B.M,B.Z,B.aj,0),o=A.q6(B.bv,A.c([A.hy(!1,s,!0,A.bv("Menu",s,s,s,B.lH,s,s),s,!0,s,s,s,s,s,s,s,s,s,new A.a2W(),s,s,s,s),A.hy(!1,s,!0,A.bv("Our vibe",s,s,s,B.lH,s,s),s,!0,s,s,s,s,s,s,s,s,s,new A.a2X(),s,s,s,s),A.hy(!1,s,!0,A.bv("Find us",s,s,s,B.lH,s,s),s,!0,s,s,s,s,s,s,s,s,s,new A.a2Y(),s,s,s,s)],q),B.dd,10,28)
+K(a){var s=null,r=A.bn(a,s,t.w).w,q=t.p,p=A.dO(A.c([A.axg(A.Kp("lib/images/HSlogo.webp",s,B.bL,48,48)),B.fi,B.DQ],q),B.M,B.Z,B.aj,0),o=A.q6(B.bv,A.c([A.hy(!1,s,!0,A.bv("Menu",s,s,s,B.lH,s,s),s,!0,s,s,s,s,s,s,s,s,s,new A.a2W(),s,s,s,s),A.hy(!1,s,!0,A.bv("Our vibe",s,s,s,B.lH,s,s),s,!0,s,s,s,s,s,s,s,s,s,new A.a2X(),s,s,s,s),A.hy(!1,s,!0,A.bv("Find us",s,s,s,B.lH,s,s),s,!0,s,s,s,s,s,s,s,s,s,new A.a2Y(),s,s,s,s)],q),B.dd,10,28)
 return A.dX(A.i7(new A.d3(B.fw,A.dq(A.c([r.a.a<700?A.dq(A.c([p,B.zf,o],q),B.a3,B.X):A.dO(A.c([p,o],q),B.M,B.f1,B.X,0),B.lx,B.Eu,B.cv,B.Ap],q),B.M,B.X),s),s,s),B.r,B.Dh,s,s,s,s,B.Fb,1/0)}}
 A.a2W.prototype={
 $0(){$.ho().su("all")
@@ -85518,7 +85518,7 @@ A.K0.prototype={
 K(a){var s=null,r=A.bn(a,s,t.w).w.a,q=$.jV(),p=r.b,o=t.p
 return new A.AD(A.aA1(A.dq(A.c([new A.d3(new A.a4(0,1/0,p,1/0),A.dX(A.MU(!0,new A.bG(B.nx,A.kV(B.cl,A.c([A.eV(A.dq(A.c([this.acc(a,r.a<700),A.eV(s,B.d.dw(p*0.08,24,90),s),B.FG,B.Qr],o),B.a3,B.aj),s,1/0),B.Nz],o),B.a1,B.ca),s),B.az,!0),B.r,s,B.B9,s,s,s,s,1/0),s),B.Lw,B.QR,B.Lr,B.Ft,B.FA],o),B.M,B.X)),new A.fy(new A.a4t(),s,q,s),s)},
 acc(a,b){var s,r,q=null,p=b?48:80
-p=A.axg(A.Kp("lib/images/HSlogo.png",q,B.bL,p,b?48:80))
+p=A.axg(A.Kp("lib/images/HSlogo.webp",q,B.bL,p,b?48:80))
 s=A.bv("Hot & Souly",1,B.bt,q,A.dd(q,q,B.k,q,q,q,q,q,q,q,q,b?20:30,q,q,B.V,q,q,!0,q,q,q,q,q,q,q,q),q,q)
 r=t.p
 s=A.c([p,B.fi,A.xW(A.dq(A.c([s,A.bv("SOULFUL FLAVOURS",1,B.bt,q,A.dd(q,q,B.es,q,q,q,q,q,q,q,q,b?9:12,q,q,q,q,q,!0,q,1.5,q,q,q,q,q,q),q,q)],r),B.a3,B.X))],r)
@@ -85556,9 +85556,9 @@ $.ho().U(this.gPv())},
 l(){$.ho().I(this.gPv())
 this.aJ()},
 acw(){return this.an(new A.ami())},
-gWu(){if($.ho().a==="all")var s=B.oi
+gWu(){if($.ho().a==="all")var s=B.om
 else{s=t.MO
-s=A.a0(new A.aQ(B.oi,new A.amn(this),s),s.i("z.E"))}return s},
+s=A.a0(new A.aQ(B.om,new A.amn(this),s),s.i("z.E"))}return s},
 LD(a){var s,r=null
 $.jV().E(0,a)
 s=this.c.ap(t.Pu).f
@@ -85645,7 +85645,7 @@ A.O_.prototype={
 K(a){var s=this,r=null,q=A.bn(a,r,t.w).w.a.a<900,p=q?60:100,o=t.p
 return A.dX(A.i7(new A.d3(B.fw,q?A.dq(A.c([s.PM(),B.Qv,s.Rl(!0)],o),B.a3,B.X):A.dO(A.c([A.xW(s.PM()),B.Qm,A.xW(s.Rl(!1))],o),B.M,B.Z,B.X,0),r),r,r),B.r,B.Dz,r,r,r,r,new A.aj(24,p,24,p),1/0)},
 PM(){var s=null,r=A.zR(-24,A.dX(s,B.r,s,new A.d0(s,s,A.Zi(B.bZ,1),s,s,s,B.aQ),s,s,s,s,s),s,s,24,-24,24,s),q=A.c([new A.dE(0,B.ea,A.aC(51,B.l.C()>>>16&255,B.l.C()>>>8&255,B.l.C()&255),B.M0,30)],t.sq)
-return new A.bG(B.EW,new A.d3(B.B3,new A.qP(0.92,A.kV(B.cl,A.c([r,A.azs(0,A.dX(A.Kp("lib/images/use.png",s,B.bL,s,s),B.r,s,new A.d0(s,s,s,s,q,s,B.aQ),s,s,s,s,s)),A.zR(s,A.dX(B.DS,B.r,s,new A.d0(B.ap,s,A.Zi(B.bZ,1),s,s,s,B.fy),96,s,s,s,96),s,s,s,-22,-22,s)],t.p),B.r,B.ca),s),s),s)},
+return new A.bG(B.EW,new A.d3(B.B3,new A.qP(0.92,A.kV(B.cl,A.c([r,A.azs(0,A.dX(A.Kp("lib/images/use.webp",s,B.bL,s,s),B.r,s,new A.d0(s,s,s,s,q,s,B.aQ),s,s,s,s,s)),A.zR(s,A.dX(B.DS,B.r,s,new A.d0(B.ap,s,A.Zi(B.bZ,1),s,s,s,B.fy),96,s,s,s,96),s,s,s,-22,-22,s)],t.p),B.r,B.ca),s),s),s)},
 Rl(a){var s="serif",r=null,q=a?44:60
 return A.dq(A.c([B.Wn,B.ze,A.bv("A little",r,r,r,A.dd(r,r,B.ah,r,r,r,r,r,s,r,r,q,r,r,B.V,r,1.05,!0,r,r,r,r,r,r,r,r),r,r),A.bv("more feeling",r,r,r,A.dd(r,r,B.ap,r,r,r,r,r,s,r,r,q,B.dA,r,B.V,r,1.05,!0,r,r,r,r,r,r,r,r),r,r),A.bv("in every bite.",r,r,r,A.dd(r,r,B.ah,r,r,r,r,r,s,r,r,q,r,r,B.V,r,1.05,!0,r,r,r,r,r,r,r,r),r,r),B.lw,new A.d3(B.B6,B.WI,r),B.lw,A.hy(!1,r,!0,A.dX(B.Og,B.r,r,B.B8,r,r,r,B.EU,r),r,!0,r,r,r,r,r,r,r,r,r,new A.af0(),r,r,r,r),B.Qu,B.Oj],t.p),B.a3,B.X)}}
 A.af0.prototype={
@@ -90122,7 +90122,7 @@ B.j0=new A.wu(0,"polite")
 B.Az=new A.HB(0,"polite")
 B.j1=new A.wu(1,"assertive")
 B.mg=new A.HB(1,"assertive")
-B.e9=new A.qQ("lib/images/background.png",null,null)
+B.e9=new A.qQ("lib/images/background.webp",null,null)
 B.ho=s([],t.s)
 B.j=new A.BG(1,"downstream")
 B.lG=new A.fe(-1,-1,B.j,!1,-1,-1)
@@ -91153,17 +91153,6 @@ B.Ib=s([6.43023796,2.98020421],t.n)
 B.oh=s([B.Ia,B.Hf,B.J3,B.J6,B.I1,B.I7,B.Iz,B.Ie,B.Iq,B.I4,B.Ib],t.zg)
 B.I0=s([B.j0,B.j1],A.ak("B<wu>"))
 B.I3=s([18,15,10,12,15,18,15,12,12],t.n)
-B.D6=new A.C(1,0.6901960784313725,0.27058823529411763,0.1843137254901961,B.e)
-B.Lm=new A.im(1,"The Soul Dog","House favourite","Grilled dog, caramelised onions, tangy house sauce, crispy shallots.",200,"hotdogs","lib/images/hot-dog.jpg",B.D6,4.8,126)
-B.CP=new A.C(1,0.8784313725490196,0.6901960784313725,0.2901960784313726,B.e)
-B.Lo=new A.im(2,"Loaded Soul Fries","Crispy corner","Golden fries, cheese sauce, jalape\xf1o, scallion, smoky drizzle.",250,"fries","lib/images/fries.jpg",B.CP,4.6,98)
-B.D5=new A.C(1,0.35294117647058826,0.4,0.2823529411764706,B.e)
-B.Ln=new A.im(3,"Street Tacos","Two-bite joy","Soft tortillas, spiced filling, fresh slaw, lime and heat.",150,"tacos","lib/images/tacos.jpg",B.D5,4.7,84)
-B.CU=new A.C(1,0.8117647058823529,0.4588235294117647,0.27058823529411763,B.e)
-B.Lq=new A.im(4,"Sunset Juice","Fresh pour","Bright, cold-pressed and made for the golden hour.",150,"drinks","lib/images/juice.png",B.CU,4.5,61)
-B.DD=new A.C(1,0.9019607843137255,0.8274509803921568,0.6705882352941176,B.e)
-B.Lp=new A.im(5,"Cloud Yoghurt","Cool down","Silky yoghurt, fruit, crunch and a little honey on top.",200,"drinks","lib/images/yoghurt.png",B.DD,4.4,47)
-B.oi=s([B.Lm,B.Lo,B.Ln,B.Lq,B.Lp],A.ak("B<im>"))
 B.aJ=new A.er(0,"icon")
 B.aZ=new A.er(1,"input")
 B.ae=new A.er(2,"label")
@@ -91177,16 +91166,16 @@ B.bI=new A.er(9,"counter")
 B.cC=new A.er(10,"container")
 B.Id=s([B.aJ,B.aZ,B.ae,B.b9,B.ba,B.bb,B.a8,B.aP,B.bH,B.bI,B.cC],A.ak("B<er>"))
 B.Js=new A.oL("en",null,"US")
-B.oj=s([B.Js],t.ss)
-B.ok=s([0,41,61,101,131,181,251,301,360],t.n)
+B.oi=s([B.Js],t.ss)
+B.oj=s([0,41,61,101,131,181,251,301,360],t.n)
 B.Yz=new A.ld(0,0)
 B.YE=new A.ld(1,0.05)
 B.YC=new A.ld(3,0.08)
 B.YD=new A.ld(6,0.11)
 B.YB=new A.ld(8,0.12)
 B.YA=new A.ld(12,0.14)
-B.ol=s([B.Yz,B.YE,B.YC,B.YD,B.YB,B.YA],A.ak("B<ld>"))
-B.om=s([0,21,51,121,151,191,271,321,360],t.n)
+B.ok=s([B.Yz,B.YE,B.YC,B.YD,B.YB,B.YA],A.ak("B<ld>"))
+B.ol=s([0,21,51,121,151,191,271,321,360],t.n)
 B.Il=s([-1,0,0,1,0,0,-1,0,1,0,0,0,-1,1,0,1,1,1,1,0],t.n)
 B.AI=new A.HO(2,"outer")
 B.n1=new A.C(0.09803921568627451,0,0,0,B.e)
@@ -91206,6 +91195,17 @@ B.bw=new A.iI(1,"title")
 B.cE=new A.iI(2,"subtitle")
 B.e6=new A.iI(3,"trailing")
 B.Iy=s([B.cD,B.bw,B.cE,B.e6],A.ak("B<iI>"))
+B.D6=new A.C(1,0.6901960784313725,0.27058823529411763,0.1843137254901961,B.e)
+B.Lm=new A.im(1,"The Soul Dog","House favourite","Grilled dog, caramelised onions, tangy house sauce, crispy shallots.",200,"hotdogs","lib/images/hot-dog.webp",B.D6,4.8,126)
+B.CP=new A.C(1,0.8784313725490196,0.6901960784313725,0.2901960784313726,B.e)
+B.Lq=new A.im(2,"Loaded Soul Fries","Crispy corner","Golden fries, cheese sauce, jalape\xf1o, scallion, smoky drizzle.",250,"fries","lib/images/fries.webp",B.CP,4.6,98)
+B.D5=new A.C(1,0.35294117647058826,0.4,0.2823529411764706,B.e)
+B.Ln=new A.im(3,"Street Tacos","Two-bite joy","Soft tortillas, spiced filling, fresh slaw, lime and heat.",150,"tacos","lib/images/tacos.webp",B.D5,4.7,84)
+B.CU=new A.C(1,0.8117647058823529,0.4588235294117647,0.27058823529411763,B.e)
+B.Lp=new A.im(4,"Sunset Juice","Fresh pour","Bright, cold-pressed and made for the golden hour.",150,"drinks","lib/images/juice.webp",B.CU,4.5,61)
+B.DD=new A.C(1,0.9019607843137255,0.8274509803921568,0.6705882352941176,B.e)
+B.Lo=new A.im(5,"Cloud Yoghurt","Cool down","Silky yoghurt, fruit, crunch and a little honey on top.",200,"drinks","lib/images/yoghurt.webp",B.DD,4.4,47)
+B.om=s([B.Lm,B.Lq,B.Ln,B.Lp,B.Lo],A.ak("B<im>"))
 B.Ct=new A.nK(0,"auto")
 B.Cu=new A.nK(1,"full")
 B.Cv=new A.nK(2,"chromium")
