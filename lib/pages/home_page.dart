@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hot_and_souly/models/menu_nav.dart';
 import 'package:hot_and_souly/pages/footer.dart';
@@ -15,8 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final width = size.width;
-    final isSmall = width < 700;
+    final isSmall = size.width < 700;
 
     return Scaffold(
       // round cart button in the corner, shows how many items are in the cart
@@ -38,39 +39,11 @@ class HomePage extends StatelessWidget {
             // and makes it taller if needed, so nothing can overflow.
             ConstrainedBox(
               constraints: BoxConstraints(minHeight: size.height),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
-                // background photo. On phones it is shifted right so the
-                // hot dog and fries show instead of a cut-off middle.
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: const AssetImage("lib/images/background.webp"),
-                    fit: BoxFit.cover,
-                    alignment: isSmall
-                        ? const Alignment(0.45, 0)
-                        : Alignment.center,
-                  ),
-                ),
-                // dark tint on top of the photo so the text is readable.
-                // Phones: dark at the top where the text is, lighter at the
-                // bottom so the food still shows. Laptops: same even tint as before.
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: isSmall
-                        ? const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        Color(0xE6000000),
-                        Color(0xB3000000),
-                        Color(0x40000000),
-                      ],
-                      stops: [0.0, 0.55, 1.0],
-                    )
-                        : const LinearGradient(
-                      colors: [Color(0x66000000), Color(0x66000000)],
-                    ),
-                  ),
+                // photo + tint. On phones the photo drifts and can be swiped.
+                child: HeroBackground(
+                  pan: isSmall,
                   child: SafeArea(
                     child: Padding(
                       padding: EdgeInsets.symmetric(
@@ -87,9 +60,14 @@ class HomePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 _navBar(context, isSmall),
-                                // gap under the nav bar, scales with the window
+                                // gap under the nav bar. Bigger on phones so
+                                // the text sits nearer the middle of the screen.
                                 SizedBox(
-                                  height: (size.height * 0.08)
+                                  height: isSmall
+                                      ? (size.height * 0.13)
+                                      .clamp(48.0, 130.0)
+                                      .toDouble()
+                                      : (size.height * 0.08)
                                       .clamp(24.0, 90.0)
                                       .toDouble(),
                                 ),
@@ -273,6 +251,137 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+// Hero photo + dark tint behind the hero content.
+// Phones (pan = true): the photo slowly drifts across the food with a gentle
+// zoom, and the visitor can swipe left/right to explore it. After a swipe it
+// waits 3 seconds, then carries on drifting.
+// Laptops (pan = false): a still, centred photo with an even tint, as before.
+class HeroBackground extends StatefulWidget {
+  const HeroBackground({super.key, required this.pan, required this.child});
+
+  final bool pan;
+  final Widget child;
+
+  @override
+  State<HeroBackground> createState() => _HeroBackgroundState();
+}
+
+class _HeroBackgroundState extends State<HeroBackground>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 18),
+  );
+  Timer? _resume;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl.value = 0.5; // start on the fries and hot dog
+    if (widget.pan) _ctrl.repeat(reverse: true);
+  }
+
+  @override
+  void didUpdateWidget(HeroBackground oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // window resized between phone and laptop width
+    if (widget.pan != oldWidget.pan) {
+      if (widget.pan) {
+        _ctrl.repeat(reverse: true);
+      } else {
+        _resume?.cancel();
+        _ctrl.stop();
+        _ctrl.value = 0.5;
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _resume?.cancel();
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  void _dragStart(DragStartDetails d) {
+    _resume?.cancel();
+    _ctrl.stop();
+  }
+
+  void _dragUpdate(DragUpdateDetails d) {
+    // finger moves left -> photo moves left with it (shows more of the right)
+    final w = context.size?.width ?? 400;
+    _ctrl.value = (_ctrl.value - (d.primaryDelta ?? 0) / w).clamp(0.0, 1.0);
+  }
+
+  void _dragEnd(DragEndDetails d) {
+    _resume = Timer(const Duration(seconds: 3), () {
+      if (mounted && widget.pan) _ctrl.repeat(reverse: true);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final photo = AnimatedBuilder(
+      animation: _ctrl,
+      builder: (context, _) {
+        final t = widget.pan ? Curves.easeInOut.transform(_ctrl.value) : 0.5;
+        // left edge of the photo is mostly empty table, so start at -0.3
+        final x = widget.pan ? -0.3 + 1.3 * t : 0.0;
+        return Transform.scale(
+          scale: widget.pan ? 1.04 + 0.05 * t : 1.0,
+          child: Image.asset(
+            "lib/images/background.webp",
+            fit: BoxFit.cover,
+            alignment: Alignment(x, 0),
+            width: double.infinity,
+            height: double.infinity,
+            gaplessPlayback: true,
+          ),
+        );
+      },
+    );
+
+    final tint = DecoratedBox(
+      decoration: BoxDecoration(
+        gradient: widget.pan
+            ? const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xD9000000),
+            Color(0x8C000000),
+            Color(0xB3000000),
+          ],
+          stops: [0.0, 0.45, 1.0],
+        )
+            : const LinearGradient(
+          colors: [Color(0x66000000), Color(0x66000000)],
+        ),
+      ),
+    );
+
+    final layers = Stack(
+      children: [
+        Positioned.fill(child: ClipRect(child: photo)),
+        Positioned.fill(child: IgnorePointer(child: tint)),
+        widget.child,
+      ],
+    );
+
+    if (!widget.pan) return layers;
+
+    // horizontal swipes pan the photo; taps and vertical scrolling still work
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onHorizontalDragStart: _dragStart,
+      onHorizontalDragUpdate: _dragUpdate,
+      onHorizontalDragEnd: _dragEnd,
+      child: layers,
     );
   }
 }

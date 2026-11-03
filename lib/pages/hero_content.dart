@@ -92,23 +92,22 @@ class HeroContent extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: isSmall ? 28 : 32),
+        SizedBox(height: isSmall ? 26 : 32),
 
-        // Phones: buttons stacked full width, brand label underneath.
-        // Laptops: buttons side by side with the brand label on the far right.
+        // Phones: two compact pills side by side, brand label underneath.
+        // Laptops: full-size buttons with the brand label on the far right.
         if (isSmall) ...[
           ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 420),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            constraints: const BoxConstraints(maxWidth: 380),
+            child: Row(
               children: [
-                _menuButton(),
-                const SizedBox(height: 12),
-                _orderButton(context),
+                Expanded(child: _menuButton(compact: true)),
+                const SizedBox(width: 10),
+                Expanded(child: _orderButton(context, compact: true)),
               ],
             ),
           ),
-          const SizedBox(height: 28),
+          const SizedBox(height: 26),
           const _BrandLabel(),
         ] else
           Row(
@@ -132,34 +131,44 @@ class HeroContent extends StatelessWidget {
   }
 
   // filled gold button: scrolls down to the full menu
-  Widget _menuButton() {
+  Widget _menuButton({bool compact = false}) {
     return ElevatedButton.icon(
       onPressed: () => goToMenu('all'),
-      icon: const Icon(Icons.arrow_downward, size: 16),
-      label: const Text("See the menu"),
+      icon: Icon(Icons.arrow_downward, size: compact ? 15 : 16),
+      label: Text(compact ? "See menu" : "See the menu"),
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color(0xFFE3B341),
         foregroundColor: const Color(0xFF14110F),
-        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+        padding: compact
+            ? const EdgeInsets.symmetric(horizontal: 12, vertical: 14)
+            : const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
         shape: const StadiumBorder(),
-        textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        textStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: compact ? 13.5 : 15,
+        ),
       ),
     );
   }
 
   // outlined button: opens the cart / order sheet
-  Widget _orderButton(BuildContext context) {
+  Widget _orderButton(BuildContext context, {bool compact = false}) {
     return OutlinedButton.icon(
       onPressed: () => showCartSheet(context),
-      icon: const Icon(Icons.north_east, size: 16),
-      label: const Text("Place your order"),
+      icon: Icon(Icons.north_east, size: compact ? 15 : 16),
+      label: Text(compact ? "Order now" : "Place your order"),
       style: OutlinedButton.styleFrom(
         foregroundColor: Colors.white,
         backgroundColor: const Color(0x33000000),
         side: const BorderSide(color: Colors.white54),
-        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
+        padding: compact
+            ? const EdgeInsets.symmetric(horizontal: 12, vertical: 14)
+            : const EdgeInsets.symmetric(horizontal: 28, vertical: 20),
         shape: const StadiumBorder(),
-        textStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+        textStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: compact ? 13.5 : 15,
+        ),
       ),
     );
   }
@@ -221,23 +230,31 @@ class _BrandLabel extends StatelessWidget {
   }
 }
 
-// The thin strip pinned to the bottom of the hero: "scroll to explore".
+// The thin strip pinned to the bottom of the hero.
+// On phones it also hints that the photo can be swiped.
 class HeroBottomStrip extends StatelessWidget {
   const HeroBottomStrip({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // little gold line + text
+    final isSmall = MediaQuery.of(context).size.width < 700;
+
     return Row(
       children: [
         Container(width: 30, height: 1, color: const Color(0xFFE3B341)),
         const SizedBox(width: 10),
-        const Text(
-          "SCROLL TO EXPLORE",
-          style: TextStyle(
-            fontSize: 11,
-            letterSpacing: 1.5,
-            color: Colors.white54,
+        Flexible(
+          child: Text(
+            isSmall
+                ? "SWIPE THE PHOTO · SCROLL TO EXPLORE"
+                : "SCROLL TO EXPLORE",
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontSize: 11,
+              letterSpacing: 1.5,
+              color: Colors.white54,
+            ),
           ),
         ),
       ],
